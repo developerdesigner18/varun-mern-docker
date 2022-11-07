@@ -16,10 +16,13 @@ RUN yarn install
 RUN yarn build
 
 # production environment
-FROM nginx:1.21.4-alpine
-COPY --from=build /app/build /usr/share/nginx/html
+FROM nginx:1.15.2-alpine
+
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d
+# Static build
+COPY --from=builder /app/build /usr/share/nginx/html/
+
 EXPOSE 80
-EXPOSE 443
+
 CMD ["nginx", "-g", "daemon off;"]
