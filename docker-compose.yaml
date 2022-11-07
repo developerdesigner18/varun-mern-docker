@@ -43,12 +43,7 @@ services:
     ports:
       - '8080:8080'
 
-    environment:
-      CONNECTION_URL: mongodb://test:12345@host.docker.internal:27017/userApp?authSource=admin&readPreference=primary
-      JWT_SECRET: cAi2n6PobsdGrjgKUrvAy5a1+J3d5emcbMClTe/kEk4=
-      AWS_S3_ACCESS_KEY_ID: AKIA6RBFMEAFUFWOKL6I
-      AWS_S3_SECRET_ACCESS_KEY: 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
-      AWS_S3_BUCKET_NAME: reactandnode
+    
 
     # depends_on means it will start our backend container once mongo-container is  up and running.
     depends_on:
