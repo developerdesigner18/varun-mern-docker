@@ -34,9 +34,6 @@ services:
       MONGO_INITDB_ROOT_USERNAME: 'test'
       MONGO_INITDB_ROOT_PASSWORD: '12345'
 
-    depends_on:
-      - caddy
-
   # name is optional for our backend
   backend:
     # to build an image based on Dockerfile
