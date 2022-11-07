@@ -7,7 +7,10 @@ WORKDIR /app
 
 #COPY package.json package-lock.json ./
 COPY package.json .
+COPY yarn.lock .
 
 COPY . .
-RUN npm install
-CMD [ "npm", "start" ]
+
+RUN yarn install
+
+CMD [ "yarn", "start" ]

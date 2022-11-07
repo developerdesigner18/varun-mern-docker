@@ -3,11 +3,12 @@ FROM node
 WORKDIR /app
 
 COPY package.json .
+COPY yarn.lock .
 
-RUN npm install
+RUN yarn install
 
 COPY . .
 
 EXPOSE 8080
 
-CMD ["npm","start"]
+CMD ["yarn","start"]
