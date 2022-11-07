@@ -1,0 +1,12 @@
+# Replace example.com with your application's domain
+52.54.147.210 {
+  # node-app:4000 is the docker container running the Node.js application
+  # in our case it's exposed on port 4000
+  reverse_proxy /api backend:8080  {
+    header_down Strict-Transport-Security max-age=31536000;
+   }
+
+  reverse_proxy / frontend:3000  {
+    header_down Strict-Transport-Security max-age=31536000;
+   }
+}
