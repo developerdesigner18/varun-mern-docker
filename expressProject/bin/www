@@ -25,7 +25,11 @@ app.set("port", port);
 var server = http.createServer(app);
 
 // DB Setup
-const CONNECTION_URL = process.env.CONNECTION_URL;
+const CONNECTION_URL =
+  process.env.TYPE === "development"
+    ? process.env.CONNECTION_DEV_URL
+    : process.env.CONNECTION_PROD_URL;
+
 mongoose
   .connect(CONNECTION_URL, {
     useNewUrlParser: true,

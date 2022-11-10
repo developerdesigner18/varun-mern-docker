@@ -4,18 +4,6 @@ version: '3.8'
 # services : is a list of our container
 services:
 
-  # caddy:
-  #     image: caddy:alpine
-  #     container_name: caddy-service
-  #     restart: unless-stopped
-  #     ports:
-  #         - 80:80
-  #         - 443:443
-  #     volumes:            
-  #         - ./caddy_data:/data
-  #         - ./caddy_config:/config
-  #         - ./Caddyfile:/etc/caddy/Caddyfile
-
   # name is optional for our mongodb
   mymongodb:
     # since mongo is an offical image we can use it.
@@ -43,7 +31,9 @@ services:
     ports:
       - '8080:8080'
 
-    
+    environment:
+      CONNECTION_URL: mongodb://test:12345@host.docker.internal:27017/userApp?authSource=admin&readPreference=primary
+      JWT_SECRET: cAi2n6PobsdGrjgKUrvAy5a1+J3d5emcbMClTe/kEk4=
 
     # depends_on means it will start our backend container once mongo-container is  up and running.
     depends_on:
@@ -54,14 +44,17 @@ services:
     # to build an image based on Dockerfile
     # it looks in this folder to find Dockerfile to build an image
     build: ./my-react-app
+    container_name: react-app
 
     # the port that we want to publish for frontend
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
+      - '443:443'
     # add bind mount volume to keep have updated source code
     volumes:
-      - ./my-react-app/src:/app/src
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
     # allow interactive mode
     stdin_open: true
     tty: true
@@ -73,5 +66,5 @@ services:
 # declare the volumes name that our app is using.
 volumes:
   data:
-  # caddy_data:
-  # caddy_config:
+  caddy_data:
+  caddy_config:

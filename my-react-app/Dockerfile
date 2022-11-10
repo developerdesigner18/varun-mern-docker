@@ -16,13 +16,8 @@ RUN yarn install
 RUN yarn build
 
 # production environment
-FROM nginx:1.15.2-alpine
+FROM caddy/caddy:2.4.5-alpine
 
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d
-# Static build
-COPY --from=builder /app/build /usr/share/nginx/html/
+COPY --from=builder /app/build /srv
 
 EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]

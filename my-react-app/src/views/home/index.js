@@ -7,7 +7,7 @@ const Home = () => {
   useEffect(() => {
     //   Fetching All Person Profile Data
     axios
-      .get("http://localhost:8080/users/fetchAllUserDetail")
+      .get("api/users/fetchAllUserDetail")
       .then((res) => {
         if (res.data.success) {
           setUserInfo([...res.data.data]);

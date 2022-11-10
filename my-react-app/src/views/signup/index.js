@@ -20,7 +20,7 @@ const SignUp = () => {
     password === "" && setValidate({ password: true });
     if (username !== "" && password !== "") {
       axios
-        .post("http://localhost:8080/users/signup", { username, password })
+        .post("api/users/signup", { username, password })
         .then((res) => {
           const { success, message, result } = res.data;
           if (success) {

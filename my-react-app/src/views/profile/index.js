@@ -23,7 +23,7 @@ const Profile = () => {
     biodata && form.append("biodata", biodata);
     profile_pic && form.append("profile_pic", profile_pic);
     axios
-      .put("http://localhost:8080/users/insertUserDetail", form, {
+      .put("api/users/insertUserDetail", form, {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((res) => {
