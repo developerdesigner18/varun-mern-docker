@@ -1,4 +1,4 @@
-52.54.147.210 {
+52.54.147.210.nip.io {
 	header {
 		Strict-Transport-Security max-age=31536000;
 	}
