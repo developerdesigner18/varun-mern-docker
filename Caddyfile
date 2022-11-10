@@ -1,4 +1,4 @@
-ec2-52-54-147-210.compute-1.amazonaws.com {
+52.54.147.210.nip.io {
 	header {
 		Strict-Transport-Security max-age=31536000;
 	}
